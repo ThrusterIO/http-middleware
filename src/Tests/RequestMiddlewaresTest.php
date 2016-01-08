@@ -61,11 +61,7 @@ class RequestMiddlewaresTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'a';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $b = function (
@@ -75,11 +71,7 @@ class RequestMiddlewaresTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'b';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $c = function (
@@ -89,11 +81,7 @@ class RequestMiddlewaresTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'c';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $d = function (
@@ -103,11 +91,7 @@ class RequestMiddlewaresTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'd';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $e = function (
@@ -117,11 +101,7 @@ class RequestMiddlewaresTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'e';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $f = function (
@@ -131,11 +111,7 @@ class RequestMiddlewaresTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'f';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $g = function (
@@ -145,11 +121,7 @@ class RequestMiddlewaresTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'g';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $h = function (
@@ -158,10 +130,6 @@ class RequestMiddlewaresTest extends \PHPUnit_Framework_TestCase
             callable $next = null
         ) use (&$result) {
             $result[] = 'h';
-
-            if (null !== $next) {
-                return $next($request, $response);
-            }
 
             return $response;
         };

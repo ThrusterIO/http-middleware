@@ -48,11 +48,7 @@ class MiddlewaresTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'a';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $b = function (
@@ -62,11 +58,7 @@ class MiddlewaresTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'b';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $c = function (
@@ -76,11 +68,7 @@ class MiddlewaresTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'c';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $this->middlewares->add($b)->add($c);

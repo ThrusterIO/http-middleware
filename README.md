@@ -43,14 +43,10 @@ use Thruster\Component\HttpMiddleware\Middlewares;
 $middlewares = new Middlewares();
 
 $middlewares->add(
-    function (ServerRequestInterface $request, ResponseInterface $response, callable $next = null) {
+    function (ServerRequestInterface $request, ResponseInterface $response, callable $next) {
         // ... Do something cool
 
-        if (null !== $next) {
-            return $next($request, $response);
-        }
-
-        return $response;
+        return $next($request, $response);
     }
 );
 
@@ -85,14 +81,10 @@ $application = new class
     public function __construct()
     {
         $this->addMiddleware(
-            function (ServerRequestInterface $request, ResponseInterface $response, callable $next = null) {
+            function (ServerRequestInterface $request, ResponseInterface $response, callable $next) {
                 // ... Do something cool
 
-                if (null !== $next) {
-                    return $next($request, $response);
-                }
-
-                return $response;
+                return $next($request, $response);
             }
         );
 
@@ -100,7 +92,7 @@ $application = new class
         $this->addMiddleware([$this, 'executeAction']);
     }
 
-    public function executeAction(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
+    public function executeAction(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
         // ...
     }
@@ -131,14 +123,10 @@ use Thruster\Component\HttpMiddleware\RequestMiddlewares;
 $middlewares = new RequestMiddlewares();
 
 $middlewares->pre(
-    function (ServerRequestInterface $request, ResponseInterface $response, callable $next = null) {
+    function (ServerRequestInterface $request, ResponseInterface $response, callable $next) {
         // ... Do something cool
 
-        if (null !== $next) {
-            return $next($request, $response);
-        }
-
-        return $response;
+        return $next($request, $response);
     }
 );
 
@@ -165,21 +153,17 @@ $application = new class
     public function __construct()
     {
         $this->addPreMiddleware(
-            function (ServerRequestInterface $request, ResponseInterface $response, callable $next = null) {
+            function (ServerRequestInterface $request, ResponseInterface $response, callable $next) {
                 // ... Do something cool
 
-                if (null !== $next) {
-                    return $next($request, $response);
-                }
-
-                return $response;
+                return $next($request, $response);
             }
         );
 
         $this->addPostMiddleware(new SomeCoolMiddleware());
     }
 
-    public function executeAction(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
+    public function executeAction(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
         // ...
     }

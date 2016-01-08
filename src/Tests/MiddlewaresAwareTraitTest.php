@@ -54,11 +54,7 @@ class MiddlewaresAwareTraitTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'a';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $b = function (
@@ -68,11 +64,7 @@ class MiddlewaresAwareTraitTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'b';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $c = function (
@@ -82,11 +74,7 @@ class MiddlewaresAwareTraitTest extends \PHPUnit_Framework_TestCase
         ) use (&$result) {
             $result[] = 'c';
 
-            if (null !== $next) {
-                return $next($request, $response);
-            }
-
-            return $response;
+            return $next($request, $response);
         };
 
         $this->trait->addMiddleware($b)->addMiddleware($c);
