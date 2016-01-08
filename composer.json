@@ -1,0 +1,33 @@
+{
+    "name": "thruster/http-middleware",
+    "type": "library",
+    "description": "Thruster HttpMiddleware Component (PSR-7 based middlewares dispatcher)",
+    "keywords": ["http-middleware", "httpmidldeware", "http", "middleware", "thruster", "psr-7", "middlewares"],
+    "homepage": "https://thruster.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aurimas Niekis",
+            "email": "aurimas@niekis.lt"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "psr/http-message": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.0"
+    },
+    "autoload": {
+        "psr-4": { "Thruster\\Component\\HttpMiddleware\\": "src" }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-ci": "vendor/bin/phpunit -c phpunit.xml.ci"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
