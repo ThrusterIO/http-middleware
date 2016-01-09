@@ -116,12 +116,6 @@ class Middlewares
             }
         };
 
-        if (null === $next) {
-            $next = function (ServerRequestInterface $request, ResponseInterface $response) {
-                return $response;
-            };
-        }
-
         return $dispatcher($request, $response, $next);
     }
 }
