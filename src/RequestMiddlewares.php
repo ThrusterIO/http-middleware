@@ -114,7 +114,7 @@ class RequestMiddlewares
         callable $next = null
     ) : ResponseInterface
     {
-        return $this->preMiddlewares->__invoke(
+        return $this->getPreMiddlewares()->__invoke(
             $request,
             $response,
             function (ServerRequestInterface $request, ResponseInterface $response) use ($requestHandler, $next) {
@@ -122,7 +122,7 @@ class RequestMiddlewares
                     $response = $requestHandler($request, $response);
                 }
 
-                return $this->postMiddlewares->__invoke($request, $response, $next);
+                return $this->getPostMiddlewares()->__invoke($request, $response, $next);
             }
         );
     }
