@@ -79,7 +79,8 @@ class Middlewares
         ServerRequestInterface $request,
         ResponseInterface $response,
         callable $next = null
-    ) : ResponseInterface {
+    ) : ResponseInterface
+    {
         $dispatcher = new class($this->middlewares)
         {
             /**
@@ -100,19 +101,44 @@ class Middlewares
                 /** @var callable $middleware */
                 $middleware = array_shift($this->middlewares);
 
-                if (null !== $middleware) {
-                    $response = $middleware($request, $response, $this);
-                }
-
-                if (null === $next) {
-                    return $response;
-                }
-
                 $skip = function (ServerRequestInterface $request, ResponseInterface $response) {
                     return $response;
                 };
 
-                return $next($request, $response, $skip);
+                if (count($this->middlewares) < 1) {
+                    if (null === $next) {
+                        $callback = $skip;
+                    } else {
+                        $callback = function (
+                            ServerRequestInterface $request,
+                            ResponseInterface $response
+                        ) use (
+                            $next,
+                            $skip
+                        ) {
+                            return $next($request, $response, $skip);
+                        };
+                    }
+                } else {
+                    $callback = function (
+                        ServerRequestInterface $request,
+                        ResponseInterface $response
+                    ) use (
+                        $next
+                    ) {
+                        return $this->__invoke($request, $response, $next);
+                    };
+                }
+
+                if (null !== $middleware) {
+                    $response = $middleware(
+                        $request,
+                        $response,
+                        $callback
+                    );
+                }
+
+                return $response;
             }
         };
 

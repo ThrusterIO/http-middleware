@@ -79,6 +79,38 @@ class MiddlewaresTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['b', 'c', 'a'], $result);
     }
 
+    public function testMiddlewaresWithoutNext()
+    {
+        $result = [];
+
+        $b = function (
+            ServerRequestInterface $request,
+            ResponseInterface $response,
+            callable $next = null
+        ) use (&$result) {
+            $result[] = 'b';
+
+            return $next($request, $response);
+        };
+
+        $c = function (
+            ServerRequestInterface $request,
+            ResponseInterface $response,
+            callable $next = null
+        ) use (&$result) {
+            $result[] = 'c';
+
+            return $next($request, $response);
+        };
+
+        $this->middlewares->add($b)->add($c);
+
+        $response = $this->middlewares->__invoke($this->request, $this->response);
+
+        $this->assertEquals($this->response, $response);
+        $this->assertEquals(['b', 'c'], $result);
+    }
+
     public function testMethods()
     {
         $a = function () {};
