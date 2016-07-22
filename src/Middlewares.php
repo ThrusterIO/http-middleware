@@ -118,6 +118,10 @@ class Middlewares
                         ) {
                             return $next($request, $response, $skip);
                         };
+
+                        if (null === $middleware) {
+                            return $callback($request, $response, $callback);
+                        }
                     }
                 } else {
                     $callback = function (
@@ -145,3 +149,4 @@ class Middlewares
         return $dispatcher($request, $response, $next);
     }
 }
+
